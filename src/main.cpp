@@ -30,6 +30,7 @@
 #include "SD.h"
 #include "SPI.h"
 
+//https://github.com/100askTeam/esp-arduino-learn/blob/master/examples/08_integrated/01_lcd_sd_card_fc_joypad_fs_lv_lib_100ask/01_lcd_sd_card_fc_joypad_fs_lv_lib_100ask.ino
 void listDir(fs::FS &fs, const char *dirname, uint8_t levels);
 File readFile(fs::FS &fs, const char *path);
 void lv_example_msgbox_1(const char * mesaj);
@@ -106,12 +107,6 @@ void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
 
 void setup()
 {
-// digitalWrite(16, HIGH); // TFT screen chip select
-// digitalWrite(15, HIGH); // SD card chips select
-//   Serial.begin(115200); /* prepare for possible serial debug */
-//   SPI.begin(14, 12, 13);
-//   SPI.setFrequency(8000000);
-
 
   lv_init();
 
@@ -133,87 +128,14 @@ void setup()
   disp_drv.draw_buf = &draw_buf;
   lv_disp_drv_register(&disp_drv);
 
-  /*Initialize the (dummy) input device driver*/
+ 
   static lv_indev_drv_t indev_drv;
   lv_indev_drv_init(&indev_drv);
   indev_drv.type = LV_INDEV_TYPE_POINTER;
   indev_drv.read_cb = my_touchpad_read;
   lv_indev_drv_register(&indev_drv);
 
-    
-    BackGround background = backGround_Create();
-    lv_obj_t* scada_Main = lv_obj_create(background.background);
-    lv_obj_set_style_radius(scada_Main, 0, 0);
-    lv_obj_set_style_pad_all(scada_Main, 0, 0);
-    lv_obj_set_style_pad_gap(scada_Main, 0, 0);
-    lv_obj_set_style_border_width(scada_Main, 0, 0);
-
-
-    lv_obj_set_style_bg_opa(scada_Main, LV_OPA_TRANSP, 0);
-    lv_obj_set_style_outline_opa(scada_Main, LV_OPA_TRANSP, 0);
-    lv_obj_set_style_border_opa(scada_Main, LV_OPA_TRANSP, 0);
-    //lv_obj_set_style_bg_color(main, lv_color_make(100,100,0),0);
-    lv_obj_set_style_x(scada_Main, 8, 0);
-    lv_obj_set_style_y(scada_Main, 40, 0);
-    lv_obj_set_style_width(scada_Main, 465, 0);
-    lv_obj_set_style_height(scada_Main,200, 0);
-    lv_obj_clear_flag(scada_Main, LV_OBJ_FLAG_SCROLLABLE);
-
-
-
-
-//     Filtre filtre = filtre_Create(scada_Main, 0, 72);
-
-//     Boru  boru1 = boru_Create(scada_Main, 20, 72, 35, DOWN_TO_UP, b10);
-//     Dirsek10  dirsek10_2 = dirsek10_Create(scada_Main, 10, 16, 0);
-//     Valf ev1 = valf_Create(scada_Main, 35, 0, LEFT_TO_RIGHT, v10);
-//     TBoru tboru_1 = tBoru_Create(scada_Main, 63, 16, t10);
-//     Boru boru2 = boru_Create(scada_Main, 84, 26, 16, LEFT_TO_RIGHT, b10);
-//     TBoru tboru_2 = tBoru_Create(scada_Main, 100, 16, tDOSING);
-//     Boru boru3 = boru_Create(scada_Main, 121, 26, 16, LEFT_TO_RIGHT, b10);
-//     Kartus kartus = kartus_Create(scada_Main, 137, 14);
-
-//     Boru boru4 = boru_Create(scada_Main, 175, 70, 30, LEFT_TO_RIGHT, b10);
-//     PslPsh psl = pslpsh_Create(scada_Main, 178, 37);
-
-//     HppMotor hpp = hppMotor_Create(scada_Main, 205, 17);
-
-//     Boru boru5 = boru_Create(scada_Main, 229, 70, 31, LEFT_TO_RIGHT, b10);
-//     PslPsh psh = pslpsh_Create(scada_Main, 232, 37);
-
-//     Membrane membrane = membrane_Create(scada_Main, 260, 51);
-//     Boru boru6 = boru_Create(scada_Main, 359, 59, 15, LEFT_TO_RIGHT, b6);
-//     TBoru tboru_3 = tBoru_Create(scada_Main, 370, 53, tCIP);
-//     Boru boru6_1 = boru_Create(scada_Main, 380, 59, 53, LEFT_TO_RIGHT, b6);
-
-//     Dirsek6 dirsek6_1 = dirsek6_Create(scada_Main, 430, 53, 90);
-//     Boru boru7 = boru_Create(scada_Main, 443, 100, 37, DOWN_TO_UP, b6);
-//     TemizSuTanki temiz_su_tanki = temizSuTanki_Create(scada_Main, 416, 100);
-
-//     Boru boru8 = boru_Create(scada_Main, 377, 68, 80, UP_TO_DOWN, b4);
-//     Valf ev3 = valf_Create(scada_Main, 389, 80, DOWN_TO_UP, v4);
-//     CipTank cipTank = cipTank_Create(scada_Main, 357, 130);
-
-//     Boru ev4_boru = boru_Create(scada_Main, 359, 77, 45, LEFT_TO_RIGHT, b4);
-//     Dirsek4 dirsek4_3 = dirsek4_Create(scada_Main, 402, 73, 90);
-//     Valf ev4 = valf_Create(scada_Main, 420, 80, DOWN_TO_UP, v4);
-
-
-//     Boru boru13 = boru_Create(scada_Main, 357, 183, 270, RIGHT_TO_LEFT, b10);
-//     HppMotor cip_pump = hppMotor_Create(scada_Main, 205, 139);
-//     Dirsek10 dirsek10_3 = dirsek10_Create(scada_Main, 68, 165, -90);
-
-
-//     Boru boru12 = boru_Create(scada_Main, 69, 38, 131, UP_TO_DOWN, b10);
-//     Valf ev2 = valf_Create(scada_Main, 80, 70, DOWN_TO_UP, v10);
-
-//     Boru boru_dosing = boru_Create(scada_Main, 109, 38, 32, UP_TO_DOWN, b4);
-//     DosingPump dosing_pump = dosingPump_Create(scada_Main, 102, 70, 0);
-//     DosingTank dosing_tank = dosingTank_Create(scada_Main, 99, 95);
-
-// cip_pump.on(&cip_pump);
-  
-   if(!SPIFFS.begin(true)){
+ if(!SPIFFS.begin(true)){
   //   Serial.println("An Error has occurred while mounting SPIFFS");
      return;
    }
@@ -223,6 +145,7 @@ static lv_fs_drv_t fs_drv;
   /*Set up fields...*/
   fs_drv.letter = 'P';
   fs_drv.cache_size = 0;
+
 
   fs_drv.open_cb = sd_fs_open;
    fs_drv.close_cb = sd_fs_close;
@@ -239,51 +162,105 @@ static lv_fs_drv_t fs_drv;
 
 
 
-   lv_obj_t* img1 = lv_img_create(lv_scr_act()); /*Create an image object*/
+
+
+
+    
+    BackGround background = backGround_Create();
+
+    lv_obj_t* scada_Main = lv_obj_create(lv_scr_act());
+    lv_obj_set_style_radius(scada_Main, 0, 0);
+    lv_obj_set_style_pad_all(scada_Main, 0, 0);
+    lv_obj_set_style_pad_gap(scada_Main, 0, 0);
+    lv_obj_set_style_border_width(scada_Main, 0, 0);
+
+
+    lv_obj_set_style_bg_opa(scada_Main, LV_OPA_TRANSP, 0);
+    lv_obj_set_style_outline_opa(scada_Main, LV_OPA_TRANSP, 0);
+    lv_obj_set_style_border_opa(scada_Main, LV_OPA_TRANSP, 0);
+    //lv_obj_set_style_bg_color(main, lv_color_make(100,100,0),0);
+    lv_obj_set_style_x(scada_Main, 0, 0);
+    lv_obj_set_style_y(scada_Main, 40, 0);
+    lv_obj_set_style_width(scada_Main, 480, 0);
+    lv_obj_set_style_height(scada_Main,210, 0);
+    lv_obj_clear_flag(scada_Main, LV_OBJ_FLAG_SCROLLABLE);
+
+
+
+
+     
+      
+
+
+    Filtre filtre = filtre_Create(scada_Main, 0, 72);
+
+    Boru  boru1 = boru_Create(scada_Main, 20, 72, 35, DOWN_TO_UP, b10);
+    Dirsek10  dirsek10_2 = dirsek10_Create(scada_Main, 10, 16, 0);
+    Valf ev1 = valf_Create(scada_Main, 35, 0, LEFT_TO_RIGHT, v10);
+    TBoru tboru_1 = tBoru_Create(scada_Main, 63, 16, t10);
+    Boru boru2 = boru_Create(scada_Main, 84, 26, 16, LEFT_TO_RIGHT, b10);
+    TBoru tboru_2 = tBoru_Create(scada_Main, 100, 16, tDOSING);
+    Boru boru3 = boru_Create(scada_Main, 121, 26, 16, LEFT_TO_RIGHT, b10);
+    Kartus kartus = kartus_Create(scada_Main, 137, 14);
+
+    Boru boru4 = boru_Create(scada_Main, 175, 70, 30, LEFT_TO_RIGHT, b10);
+    PslPsh psl = pslpsh_Create(scada_Main, 178, 37);
+
+    HppMotor hpp = hppMotor_Create(scada_Main, 205, 17);
+
+    Boru boru5 = boru_Create(scada_Main, 229, 70, 31, LEFT_TO_RIGHT, b10);
+    PslPsh psh = pslpsh_Create(scada_Main, 232, 37);
+
+    Membrane membrane = membrane_Create(scada_Main, 260, 51);
+    Boru boru6 = boru_Create(scada_Main, 359, 59, 15, LEFT_TO_RIGHT, b6);
+    TBoru tboru_3 = tBoru_Create(scada_Main, 370, 53, tCIP);
+    Boru boru6_1 = boru_Create(scada_Main, 380, 59, 53, LEFT_TO_RIGHT, b6);
+
+    Dirsek6 dirsek6_1 = dirsek6_Create(scada_Main, 430, 53, 90);
+    Boru boru7 = boru_Create(scada_Main, 443, 100, 37, DOWN_TO_UP, b6);
+     TemizSuTanki temiz_su_tanki = temizSuTanki_Create(scada_Main, 416, 100);
+
+    Boru boru8 = boru_Create(scada_Main, 377, 68, 80, UP_TO_DOWN, b4);
+     Valf ev3 = valf_Create(scada_Main, 389, 80, DOWN_TO_UP, v4);
+     CipTank cipTank = cipTank_Create(scada_Main, 357, 130);
+
+     Boru ev4_boru = boru_Create(scada_Main, 359, 77, 45, LEFT_TO_RIGHT, b4);
+     Dirsek4 dirsek4_3 = dirsek4_Create(scada_Main, 402, 73, 90);
+     Valf ev4 = valf_Create(scada_Main, 420, 80, DOWN_TO_UP, v4);
+
+
+     Boru boru13 = boru_Create(scada_Main, 357, 183, 270, RIGHT_TO_LEFT, b10);
+     HppMotor cip_pump = hppMotor_Create(scada_Main, 205, 139);
+     Dirsek10 dirsek10_3 = dirsek10_Create(scada_Main, 68, 165, -90);
+
+
+    Boru boru12 = boru_Create(scada_Main, 69, 38, 131, UP_TO_DOWN, b10);
+    Valf ev2 = valf_Create(scada_Main, 80, 70, DOWN_TO_UP, v10);
+
+    Boru boru_dosing = boru_Create(scada_Main, 109, 38, 32, UP_TO_DOWN, b4);
+     DosingPump dosing_pump = dosingPump_Create(scada_Main, 102, 70, 0);
+     DosingTank dosing_tank = dosingTank_Create(scada_Main, 99, 95);
+
+filtre.stop_img
+
+// cip_pump.on(&cip_pump);
   
-    lv_img_set_src(img1, "P:/temizsutanki2.png");
-    lv_obj_align(img1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
-    lv_img_set_size_mode(img1, LV_IMG_SIZE_MODE_REAL);
-    lv_obj_set_style_pad_all(img1, 0, 0);
-    lv_obj_set_style_border_width(img1, 0, 0);
-    lv_obj_clear_flag(img1, LV_OBJ_FLAG_SCROLLABLE);
   
 
 
 
-   lv_obj_t* img2 = lv_img_create(lv_scr_act()); /*Create an image object*/
+  //  lv_obj_t* img1 = lv_img_create(lv_scr_act()); /*Create an image object*/
   
-    lv_img_set_src(img2, "P:/filtre_run.png");
-    lv_obj_align(img2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
-    lv_img_set_size_mode(img2, LV_IMG_SIZE_MODE_REAL);
-    lv_obj_set_style_pad_all(img2, 0, 0);
-    lv_obj_set_style_border_width(img2, 0, 0);
-        lv_obj_set_x(img2,100);
-    lv_obj_set_y(img2,50);
-    lv_obj_clear_flag(img2, LV_OBJ_FLAG_SCROLLABLE);
+  //   lv_img_set_src(img1, "P:/full.bin");
+  //   lv_obj_align(img1, LV_ALIGN_TOP_LEFT, 0, 0);     /*Align next to the source image*/
+  //   lv_img_set_size_mode(img1, LV_IMG_SIZE_MODE_REAL);
+  //   lv_obj_set_style_pad_all(img1, 0, 0);
+  //   lv_obj_set_style_border_width(img1, 0, 0);
+  //   lv_obj_clear_flag(img1, LV_OBJ_FLAG_SCROLLABLE);
+  
 
 
-       lv_obj_t* img3 = lv_img_create(lv_scr_act()); /*Create an image object*/
-  
-    lv_img_set_src(img3, "P:/filtre_stop.png");
-    lv_obj_align(img3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
-    lv_img_set_size_mode(img3, LV_IMG_SIZE_MODE_REAL);
-    lv_obj_set_style_pad_all(img3, 0, 0);
-    lv_obj_set_style_border_width(img3, 0, 0);
-    lv_obj_set_x(img3,50);
-    lv_obj_set_y(img3,50);
-    lv_obj_clear_flag(img3, LV_OBJ_FLAG_SCROLLABLE);
 
-    lv_obj_t* img4 = lv_img_create(lv_scr_act()); /*Create an image object*/
-  
-    lv_img_set_src(img4, "P:/hpp motor_run.png");
-    lv_obj_align(img4, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
-    lv_img_set_size_mode(img4, LV_IMG_SIZE_MODE_REAL);
-    lv_obj_set_style_pad_all(img4, 0, 0);
-    lv_obj_set_style_border_width(img4, 0, 0);
-        lv_obj_set_x(img4,200);
-    lv_obj_set_y(img4,50);
-    lv_obj_clear_flag(img4, LV_OBJ_FLAG_SCROLLABLE);
 
   xTaskCreate(guiTask,
               "gui",

@@ -56,8 +56,8 @@ Filtre  filtreOlustur(lv_obj_t* parent, lv_coord_t  x, lv_coord_t y) {
 
 
 
-    tboru.stop_img = stop_img;
-    tboru.run_img = run_img;
+     tboru.stop_img = stop_img;
+     tboru.run_img = run_img;
     tboru.off = off;
     tboru.on = on;
     // motor.error = error;
