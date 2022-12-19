@@ -1,3 +1,4 @@
+
 #include <lvgl.h>
 #include <TFT_eSPI.h>
 #include "ui.h"
@@ -30,15 +31,17 @@
 #include "SPI.h"
 
 void listDir(fs::FS &fs, const char *dirname, uint8_t levels);
-void readFile(fs::FS &fs, const char *path);
+File readFile(fs::FS &fs, const char *path);
 void lv_example_msgbox_1(const char * mesaj);
-/*If you want to use the LVGL examples,
-  make sure to install the lv_examples Arduino library
-  and uncomment the following line.
-#include <lv_examples.h>
-*/
-
-/*Change to your screen resolution*/
+static void *sd_fs_open(lv_fs_drv_t *drv, const char *path, lv_fs_mode_t mode);
+static lv_fs_res_t sd_dir_close(lv_fs_drv_t *drv, void *dir_p);
+static lv_fs_res_t sd_dir_read(lv_fs_drv_t *drv, void *dir_p, char *fn);
+static void *sd_dir_open(lv_fs_drv_t *drv, const char *dirpath);
+static lv_fs_res_t sd_fs_tell(lv_fs_drv_t *drv, void *file_p, uint32_t *pos_p);
+static lv_fs_res_t sd_fs_seek(lv_fs_drv_t *drv, void *file_p, uint32_t pos, lv_fs_whence_t whence);
+static lv_fs_res_t sd_fs_write(lv_fs_drv_t *drv, void *file_p, const void *buf, uint32_t btw, uint32_t *bw);
+static lv_fs_res_t sd_fs_read(lv_fs_drv_t *drv, void *file_p, void *fileBuf, uint32_t btr, uint32_t *br);
+static lv_fs_res_t sd_fs_close(lv_fs_drv_t *drv, void *file_p);
 static const uint16_t screenWidth = 480;
 static const uint16_t screenHeight = 320;
 
@@ -112,7 +115,7 @@ void setup()
 
   lv_init();
 
-  lv_log_register_print_cb(my_print); /* register print function for debugging */
+  //lv_log_register_print_cb(my_print); /* register print function for debugging */
 
    tft.begin();        /* TFT init */
    tft.setRotation(1); /* Landscape orientation, flipped */
@@ -159,99 +162,128 @@ void setup()
 
 
 
-    Filtre filtre = filtre_Create(scada_Main, 0, 72);
+//     Filtre filtre = filtre_Create(scada_Main, 0, 72);
 
-    Boru  boru1 = boru_Create(scada_Main, 20, 72, 35, DOWN_TO_UP, b10);
-    Dirsek10  dirsek10_2 = dirsek10_Create(scada_Main, 10, 16, 0);
-    Valf ev1 = valf_Create(scada_Main, 35, 0, LEFT_TO_RIGHT, v10);
-    TBoru tboru_1 = tBoru_Create(scada_Main, 63, 16, t10);
-    Boru boru2 = boru_Create(scada_Main, 84, 26, 16, LEFT_TO_RIGHT, b10);
-    TBoru tboru_2 = tBoru_Create(scada_Main, 100, 16, tDOSING);
-    Boru boru3 = boru_Create(scada_Main, 121, 26, 16, LEFT_TO_RIGHT, b10);
-    Kartus kartus = kartus_Create(scada_Main, 137, 14);
+//     Boru  boru1 = boru_Create(scada_Main, 20, 72, 35, DOWN_TO_UP, b10);
+//     Dirsek10  dirsek10_2 = dirsek10_Create(scada_Main, 10, 16, 0);
+//     Valf ev1 = valf_Create(scada_Main, 35, 0, LEFT_TO_RIGHT, v10);
+//     TBoru tboru_1 = tBoru_Create(scada_Main, 63, 16, t10);
+//     Boru boru2 = boru_Create(scada_Main, 84, 26, 16, LEFT_TO_RIGHT, b10);
+//     TBoru tboru_2 = tBoru_Create(scada_Main, 100, 16, tDOSING);
+//     Boru boru3 = boru_Create(scada_Main, 121, 26, 16, LEFT_TO_RIGHT, b10);
+//     Kartus kartus = kartus_Create(scada_Main, 137, 14);
 
-    Boru boru4 = boru_Create(scada_Main, 175, 70, 30, LEFT_TO_RIGHT, b10);
-    PslPsh psl = pslpsh_Create(scada_Main, 178, 37);
+//     Boru boru4 = boru_Create(scada_Main, 175, 70, 30, LEFT_TO_RIGHT, b10);
+//     PslPsh psl = pslpsh_Create(scada_Main, 178, 37);
 
-    HppMotor hpp = hppMotor_Create(scada_Main, 205, 17);
+//     HppMotor hpp = hppMotor_Create(scada_Main, 205, 17);
 
-    Boru boru5 = boru_Create(scada_Main, 229, 70, 31, LEFT_TO_RIGHT, b10);
-    PslPsh psh = pslpsh_Create(scada_Main, 232, 37);
+//     Boru boru5 = boru_Create(scada_Main, 229, 70, 31, LEFT_TO_RIGHT, b10);
+//     PslPsh psh = pslpsh_Create(scada_Main, 232, 37);
 
-    Membrane membrane = membrane_Create(scada_Main, 260, 51);
-    Boru boru6 = boru_Create(scada_Main, 359, 59, 15, LEFT_TO_RIGHT, b6);
-    TBoru tboru_3 = tBoru_Create(scada_Main, 370, 53, tCIP);
-    Boru boru6_1 = boru_Create(scada_Main, 380, 59, 53, LEFT_TO_RIGHT, b6);
+//     Membrane membrane = membrane_Create(scada_Main, 260, 51);
+//     Boru boru6 = boru_Create(scada_Main, 359, 59, 15, LEFT_TO_RIGHT, b6);
+//     TBoru tboru_3 = tBoru_Create(scada_Main, 370, 53, tCIP);
+//     Boru boru6_1 = boru_Create(scada_Main, 380, 59, 53, LEFT_TO_RIGHT, b6);
 
-    Dirsek6 dirsek6_1 = dirsek6_Create(scada_Main, 430, 53, 90);
-    Boru boru7 = boru_Create(scada_Main, 443, 100, 37, DOWN_TO_UP, b6);
-    TemizSuTanki temiz_su_tanki = temizSuTanki_Create(scada_Main, 416, 100);
+//     Dirsek6 dirsek6_1 = dirsek6_Create(scada_Main, 430, 53, 90);
+//     Boru boru7 = boru_Create(scada_Main, 443, 100, 37, DOWN_TO_UP, b6);
+//     TemizSuTanki temiz_su_tanki = temizSuTanki_Create(scada_Main, 416, 100);
 
-    Boru boru8 = boru_Create(scada_Main, 377, 68, 80, UP_TO_DOWN, b4);
-    Valf ev3 = valf_Create(scada_Main, 389, 80, DOWN_TO_UP, v4);
-    CipTank cipTank = cipTank_Create(scada_Main, 357, 130);
+//     Boru boru8 = boru_Create(scada_Main, 377, 68, 80, UP_TO_DOWN, b4);
+//     Valf ev3 = valf_Create(scada_Main, 389, 80, DOWN_TO_UP, v4);
+//     CipTank cipTank = cipTank_Create(scada_Main, 357, 130);
 
-    Boru ev4_boru = boru_Create(scada_Main, 359, 77, 45, LEFT_TO_RIGHT, b4);
-    Dirsek4 dirsek4_3 = dirsek4_Create(scada_Main, 402, 73, 90);
-    Valf ev4 = valf_Create(scada_Main, 420, 80, DOWN_TO_UP, v4);
-
-
-    Boru boru13 = boru_Create(scada_Main, 357, 183, 270, RIGHT_TO_LEFT, b10);
-    HppMotor cip_pump = hppMotor_Create(scada_Main, 205, 139);
-    Dirsek10 dirsek10_3 = dirsek10_Create(scada_Main, 68, 165, -90);
+//     Boru ev4_boru = boru_Create(scada_Main, 359, 77, 45, LEFT_TO_RIGHT, b4);
+//     Dirsek4 dirsek4_3 = dirsek4_Create(scada_Main, 402, 73, 90);
+//     Valf ev4 = valf_Create(scada_Main, 420, 80, DOWN_TO_UP, v4);
 
 
-    Boru boru12 = boru_Create(scada_Main, 69, 38, 131, UP_TO_DOWN, b10);
-    Valf ev2 = valf_Create(scada_Main, 80, 70, DOWN_TO_UP, v10);
+//     Boru boru13 = boru_Create(scada_Main, 357, 183, 270, RIGHT_TO_LEFT, b10);
+//     HppMotor cip_pump = hppMotor_Create(scada_Main, 205, 139);
+//     Dirsek10 dirsek10_3 = dirsek10_Create(scada_Main, 68, 165, -90);
 
-    Boru boru_dosing = boru_Create(scada_Main, 109, 38, 32, UP_TO_DOWN, b4);
-    DosingPump dosing_pump = dosingPump_Create(scada_Main, 102, 70, 0);
-    DosingTank dosing_tank = dosingTank_Create(scada_Main, 99, 95);
 
-cip_pump.on(&cip_pump);
-  //   if (!SD.begin(15))
-  // {
-  //   lv_example_msgbox_1("SD CARD ERROR");
-  //   Serial.println("Card Mount Failed");
-  //   // return;
-  // }
-  // else
-  // {
-  //   lv_example_msgbox_1("SD CARD OK");
-  //   Serial.println("SD CARD OK");
-  // }
+//     Boru boru12 = boru_Create(scada_Main, 69, 38, 131, UP_TO_DOWN, b10);
+//     Valf ev2 = valf_Create(scada_Main, 80, 70, DOWN_TO_UP, v10);
 
-  // SPIClass spiSD = SPIClass(VSPI); // Neither HSPI nor VSPI seem to work
-  // spiSD.begin(14, 12, 13, 27);
-  // if(!SD.begin(27,spiSD)){
-  //   Serial.println("Card Mount Failed");
-  //  // return;
-  // }else{
-  //   Serial.println("SD CARD OK");
-  // }
+//     Boru boru_dosing = boru_Create(scada_Main, 109, 38, 32, UP_TO_DOWN, b4);
+//     DosingPump dosing_pump = dosingPump_Create(scada_Main, 102, 70, 0);
+//     DosingTank dosing_tank = dosingTank_Create(scada_Main, 99, 95);
 
-  //  static lv_fs_drv_t fs_drv; /*A driver descriptor*/
-  //     lv_fs_drv_init(&fs_drv);
+// cip_pump.on(&cip_pump);
+  
+   if(!SPIFFS.begin(true)){
+  //   Serial.println("An Error has occurred while mounting SPIFFS");
+     return;
+   }
+static lv_fs_drv_t fs_drv;
+  lv_fs_drv_init(&fs_drv);
 
-  //     /*Set up fields...*/
-  //     fs_drv.letter = 'S';
-  //     fs_drv.cache_size = 0;
+  /*Set up fields...*/
+  fs_drv.letter = 'P';
+  fs_drv.cache_size = 0;
 
-  //     // fs_drv.open_cb = fs_open;
-  //     // fs_drv.close_cb = fs_close;
-  //     // fs_drv.read_cb = fs_read;
-  //     // fs_drv.write_cb = fs_write;
-  //     // fs_drv.seek_cb = fs_seek;
-  //     // fs_drv.tell_cb = fs_tell;
+  fs_drv.open_cb = sd_fs_open;
+   fs_drv.close_cb = sd_fs_close;
+   fs_drv.read_cb = sd_fs_read;
+   fs_drv.write_cb = sd_fs_write;
+   fs_drv.seek_cb = sd_fs_seek;
+   fs_drv.tell_cb = sd_fs_tell;
 
-  //     // fs_drv.dir_close_cb = fs_dir_close;
-  //     // fs_drv.dir_open_cb = fs_dir_open;
-  //     // fs_drv.dir_read_cb = fs_dir_read;
+   fs_drv.dir_close_cb = sd_dir_close;
+  fs_drv.dir_open_cb = sd_dir_open;
+   fs_drv.dir_read_cb = sd_dir_read;
 
-  //     lv_fs_drv_register(&fs_drv);
+  lv_fs_drv_register(&fs_drv);
 
-  // listDir(SPIFFS, "/", 0);
-  // Serial.println(String(ESP.getFreeHeap()));
+
+
+   lv_obj_t* img1 = lv_img_create(lv_scr_act()); /*Create an image object*/
+  
+    lv_img_set_src(img1, "P:/temizsutanki2.png");
+    lv_obj_align(img1, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
+    lv_img_set_size_mode(img1, LV_IMG_SIZE_MODE_REAL);
+    lv_obj_set_style_pad_all(img1, 0, 0);
+    lv_obj_set_style_border_width(img1, 0, 0);
+    lv_obj_clear_flag(img1, LV_OBJ_FLAG_SCROLLABLE);
+  
+
+
+
+   lv_obj_t* img2 = lv_img_create(lv_scr_act()); /*Create an image object*/
+  
+    lv_img_set_src(img2, "P:/filtre_run.png");
+    lv_obj_align(img2, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
+    lv_img_set_size_mode(img2, LV_IMG_SIZE_MODE_REAL);
+    lv_obj_set_style_pad_all(img2, 0, 0);
+    lv_obj_set_style_border_width(img2, 0, 0);
+        lv_obj_set_x(img2,100);
+    lv_obj_set_y(img2,50);
+    lv_obj_clear_flag(img2, LV_OBJ_FLAG_SCROLLABLE);
+
+
+       lv_obj_t* img3 = lv_img_create(lv_scr_act()); /*Create an image object*/
+  
+    lv_img_set_src(img3, "P:/filtre_stop.png");
+    lv_obj_align(img3, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
+    lv_img_set_size_mode(img3, LV_IMG_SIZE_MODE_REAL);
+    lv_obj_set_style_pad_all(img3, 0, 0);
+    lv_obj_set_style_border_width(img3, 0, 0);
+    lv_obj_set_x(img3,50);
+    lv_obj_set_y(img3,50);
+    lv_obj_clear_flag(img3, LV_OBJ_FLAG_SCROLLABLE);
+
+    lv_obj_t* img4 = lv_img_create(lv_scr_act()); /*Create an image object*/
+  
+    lv_img_set_src(img4, "P:/hpp motor_run.png");
+    lv_obj_align(img4, LV_ALIGN_OUT_RIGHT_TOP, 20, 0);     /*Align next to the source image*/
+    lv_img_set_size_mode(img4, LV_IMG_SIZE_MODE_REAL);
+    lv_obj_set_style_pad_all(img4, 0, 0);
+    lv_obj_set_style_border_width(img4, 0, 0);
+        lv_obj_set_x(img4,200);
+    lv_obj_set_y(img4,50);
+    lv_obj_clear_flag(img4, LV_OBJ_FLAG_SCROLLABLE);
 
   xTaskCreate(guiTask,
               "gui",
@@ -261,6 +293,155 @@ cip_pump.on(&cip_pump);
               NULL);
 }
 
+static void *sd_fs_open(lv_fs_drv_t *drv, const char *path, lv_fs_mode_t mode) {
+  LV_UNUSED(drv);
+
+  const char *flags = "";
+
+  if (mode == LV_FS_MODE_WR)
+    flags = FILE_WRITE;
+  else if (mode == LV_FS_MODE_RD)
+    flags = FILE_READ;
+  else if (mode == (LV_FS_MODE_WR | LV_FS_MODE_RD))
+    flags = FILE_WRITE;
+
+  File f = SPIFFS.open(path, flags);
+  if (!f) {
+    Serial.println("Failed to open file!");
+    return NULL;
+  }
+
+  File *lf = new File{ f };
+
+  //make sure at the beginning
+  //fp->seek(0);
+
+  return (void *)lf;
+}
+
+static lv_fs_res_t sd_fs_close(lv_fs_drv_t *drv, void *file_p) {
+  LV_UNUSED(drv);
+
+  File *fp = (File *)file_p;
+
+  fp->close();
+
+  delete (fp);  // when close
+  return LV_FS_RES_OK;
+}
+
+static lv_fs_res_t sd_fs_read(lv_fs_drv_t *drv, void *file_p, void *fileBuf, uint32_t btr, uint32_t *br) {
+  LV_UNUSED(drv);
+
+  File *fp = (File *)file_p;
+
+  *br = fp->read((uint8_t *)fileBuf, btr);
+
+  return (int32_t)(*br) < 0 ? LV_FS_RES_UNKNOWN : LV_FS_RES_OK;
+}
+
+static lv_fs_res_t sd_fs_write(lv_fs_drv_t *drv, void *file_p, const void *buf, uint32_t btw, uint32_t *bw) {
+  LV_UNUSED(drv);
+
+  File *fp = (File *)file_p;
+
+  *bw = fp->write((const uint8_t *)buf, btw);
+
+  return (int32_t)(*bw) < 0 ? LV_FS_RES_UNKNOWN : LV_FS_RES_OK;
+}
+
+static lv_fs_res_t sd_fs_seek(lv_fs_drv_t *drv, void *file_p, uint32_t pos, lv_fs_whence_t whence) {
+  LV_UNUSED(drv);
+
+  File *fp = (File *)file_p;
+
+  SeekMode mode;
+  if (whence == LV_FS_SEEK_SET)
+    mode = SeekSet;
+  else if (whence == LV_FS_SEEK_CUR)
+    mode = SeekCur;
+  else if (whence == LV_FS_SEEK_END)
+    mode = SeekEnd;
+
+  fp->seek(pos, mode);
+
+  return LV_FS_RES_OK;
+}
+
+static lv_fs_res_t sd_fs_tell(lv_fs_drv_t *drv, void *file_p, uint32_t *pos_p) {
+  LV_UNUSED(drv);
+
+  File *fp = (File *)file_p;
+
+  *pos_p = fp->position();
+
+  return LV_FS_RES_OK;
+}
+
+
+static void *sd_dir_open(lv_fs_drv_t *drv, const char *dirpath) {
+  LV_UNUSED(drv);
+
+  File root = SPIFFS.open(dirpath);
+  if (!root) {
+    Serial.println("Failed to open directory!");
+    return NULL;
+  }
+
+  if (!root.isDirectory()) {
+    Serial.println("Not a directory!");
+    return NULL;
+  }
+
+  File *lroot = new File{ root };
+
+  return (void *)lroot;
+}
+
+
+static lv_fs_res_t sd_dir_read(lv_fs_drv_t *drv, void *dir_p, char *fn) {
+  LV_UNUSED(drv);
+
+  File *root = (File *)dir_p;
+  fn[0] = '\0';
+
+  File file = root->openNextFile();
+  while (file) {
+    if (strcmp(file.name(), ".") == 0 || strcmp(file.name(), "..") == 0) {
+      continue;
+    } else {
+      if (file.isDirectory()) {
+        Serial.print("  DIR : ");
+        Serial.println(file.name());
+        fn[0] = '/';
+        strcpy(&fn[1], file.name());
+      } else {
+        Serial.print("  FILE: ");
+        Serial.print(file.name());
+        Serial.print("  SIZE: ");
+        Serial.println(file.size());
+
+        strcpy(fn, file.name());
+      }
+      break;
+    }
+    file = root->openNextFile();
+  }
+
+  return LV_FS_RES_OK;
+}
+
+static lv_fs_res_t sd_dir_close(lv_fs_drv_t *drv, void *dir_p) {
+  LV_UNUSED(drv);
+
+  File *root = (File *)dir_p;
+
+  root->close();
+
+  delete (root);  // when close
+
+  return LV_FS_RES_OK;
+}
 void lv_example_msgbox_1(const char * mesaj )
 {
     static const char * btns[] = {"Close", ""};
