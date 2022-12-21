@@ -1,23 +1,17 @@
 ﻿#include "psl_psh.h"
 
-static  void on(PslPsh* valf) {
+static  void on(PslPsh* pslpsh) {
 
-   // _ui_flag_modify(valf->stop_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-    _ui_flag_modify(valf->run_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-    _ui_flag_modify(valf->error_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+    setVisibilty(pslpsh->run_img, true);
+    setVisibilty(pslpsh->error_img, false);
+   
 
 }
 
-//static void off(Valf* valf) {
-//    _ui_flag_modify(valf->stop_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-//    _ui_flag_modify(valf->run_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-//    _ui_flag_modify(valf->error_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-//}
-
-static void error(PslPsh* valf) {
-    //_ui_flag_modify(valf->stop_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-    _ui_flag_modify(valf->run_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
-    _ui_flag_modify(valf->error_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
+static void error(PslPsh* pslpsh) {
+    
+    setVisibilty(pslpsh->run_img, false);
+    setVisibilty(pslpsh->error_img, true);
 }
 PslPsh  pslpshOlustur(lv_obj_t* parent, lv_coord_t  x, lv_coord_t y) {
 
@@ -61,11 +55,10 @@ PslPsh  pslpshOlustur(lv_obj_t* parent, lv_coord_t  x, lv_coord_t y) {
 
     tboru.run_img = run_img;
     tboru.error_img = error_img;
-     
     tboru.on = on;
     tboru.error = error;
-    _ui_flag_modify(run_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_REMOVE);
-    _ui_flag_modify(error_img, LV_OBJ_FLAG_HIDDEN, _UI_MODIFY_FLAG_ADD);
+    setVisibilty(run_img, true);
+    setVisibilty(error_img, false);
     
     return tboru;
 }

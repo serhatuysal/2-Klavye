@@ -2,9 +2,9 @@
 #include <stdio.h>
 
 #ifdef TESTING
-#include "../position/position.h"
+#include "../helper/helper.h"
 #else
-#include "mylib/position/position.h"
+#include "mylib/helper/helper.h"
 #endif // TESTING
 
 #ifndef BACKGROUND_H
@@ -20,9 +20,13 @@ extern "C" {
     {
 
         lv_obj_t* background;
+        lv_obj_t* lbl_mesaj;
+        lv_obj_t* img_info;
+        lv_obj_t* img_error;
 
-        /*void (*on)(Motor* motor);
-        void (*off)(Motor* motor);
+        //void (*infoMessageShow)(BackGround* self,const char* mesaj);
+        //void (*errorMessageShow)(BackGround* self,const char* mesaj);
+        /*void (*off)(Motor* motor);
         void (*error)(Motor* motor);*/
     };
 

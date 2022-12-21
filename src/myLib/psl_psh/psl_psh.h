@@ -1,20 +1,24 @@
 ﻿
+
+
+
+
+
 #include <stdio.h>
 
 #ifdef TESTING
-#include "../position/position.h"
+#include "../helper/helper.h"
 #else
-#include "mylib/position/position.h"
+#include "mylib/helper/helper.h"
 #endif // TESTING
 
-#ifndef PSLPSH_H
-#define PSLPSH_h
 
-
-
+#ifndef PSL_PSH_H
+#define PSL_PSH_H
 #ifdef __cplusplus
 extern "C" {
 #endif
+
     typedef struct PslPsh PslPsh;
     struct PslPsh
     {

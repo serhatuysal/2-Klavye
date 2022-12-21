@@ -2,9 +2,9 @@
 #include <stdio.h>
 
 #ifdef TESTING
-#include "../position/position.h"
+#include "../helper/helper.h"
 #else
-#include "mylib/position/position.h"
+#include "mylib/helper/helper.h"
 #endif // TESTING
 
 #ifndef MEMBRANE_H

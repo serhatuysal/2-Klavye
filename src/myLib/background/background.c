@@ -1,5 +1,9 @@
 ﻿#include "background.h"
 
+
+
+
+
 BackGround  backGroundOlustur() {
 
     BackGround tboru;
@@ -37,6 +41,42 @@ BackGround  backGroundOlustur() {
     lv_obj_clear_flag(main, LV_OBJ_FLAG_SCROLLABLE);
 
 
+
+    LV_IMG_DECLARE(info);
+    lv_obj_t* img_info = lv_img_create(main);
+    lv_img_set_src(img_info, &info);
+    lv_img_set_size_mode(img_info, LV_IMG_SIZE_MODE_REAL);
+    lv_obj_set_style_pad_all(img_info, 0, 0);
+    lv_obj_set_style_border_width(img_info, 0, 0);
+    lv_obj_set_x(img_info, 10);
+    lv_obj_set_y(img_info, 12);
+    lv_obj_clear_flag(img_info, LV_OBJ_FLAG_SCROLLABLE);
+    setVisibilty(img_info, false);
+
+
+
+    LV_IMG_DECLARE(error);
+    lv_obj_t* img_error = lv_img_create(main);
+    lv_img_set_src(img_error, &error);
+    lv_img_set_size_mode(img_error, LV_IMG_SIZE_MODE_REAL);
+    lv_obj_set_style_pad_all(img_error, 0, 0);
+    lv_obj_set_style_border_width(img_error, 0, 0);
+    lv_obj_set_x(img_error, 10);
+    lv_obj_set_y(img_error, 12);
+    lv_obj_clear_flag(img_error, LV_OBJ_FLAG_SCROLLABLE);
+    setVisibilty(img_error, false);
+
+
+    lv_obj_t* lbl_mesaj = lv_label_create(main);
+    lv_obj_set_x(lbl_mesaj, 27);
+    lv_obj_set_y(lbl_mesaj, 12);
+    lv_label_set_recolor(lbl_mesaj, true);
+    lv_obj_set_style_text_font(lbl_mesaj, &ui_font_GothamNarrowSmall, LV_PART_MAIN | LV_STATE_DEFAULT);
+    //lv_obj_set_style_align(lbl_mesaj, LV_ALIGN_BOTTOM_MID, 0);
+
+
+
+
     lv_obj_t* tarihSaatBox = lv_obj_create(main);
     lv_obj_set_style_pad_all(tarihSaatBox, 0, 0);
     lv_obj_set_style_border_width(tarihSaatBox, 0, 0);
@@ -62,28 +102,14 @@ BackGround  backGroundOlustur() {
     lv_obj_set_y(hr, 245);
     lv_obj_clear_flag(main, LV_OBJ_FLAG_SCROLLABLE);
 
-    // LV_IMG_DECLARE(background_img);
-
-
-
-
-    // lv_obj_t* img1 = lv_img_create(main);
-
-    // lv_img_set_src(img1, &background_img);
-
-
-    // lv_img_set_size_mode(img1, LV_IMG_SIZE_MODE_REAL);
-
-    // lv_obj_set_style_pad_all(img1, 0, 0);
-
-    // lv_obj_set_style_border_width(img1, 0, 0);
-
-    // lv_obj_clear_flag(img1, LV_OBJ_FLAG_SCROLLABLE);
-
 
 
     tboru.background = main;
-
+    tboru.lbl_mesaj = lbl_mesaj;
+    tboru.img_info = img_info;
+    tboru.img_error = img_error;
+    //tboru.infoMessageShow = infoMessageShow;
+   // tboru.errorMessageShow = errorMessageShow;
     return tboru;
 }
 
