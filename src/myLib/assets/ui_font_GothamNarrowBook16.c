@@ -1,10 +1,17 @@
-/*******************************************************************************
- * Size: 16 px
- * Bpp: 1
- * Opts: --bpp 1 --size 16 --font C:\Users\serha\OneDrive\Belgeler\SquareLine\assets\GothamNarrow-Book.otf -o C:\Users\serha\OneDrive\Belgeler\SquareLine\assets\ui_font_GothamNarrowBook16.c --format lvgl -r 0x20-0x7f --symbols ıIiİüÜğĞşŞçÇuU --no-compress --no-prefilter
- ******************************************************************************/
+#ifdef __has_include
+#if __has_include("lvgl.h")
+#ifndef LV_LVGL_H_INCLUDE_SIMPLE
+#define LV_LVGL_H_INCLUDE_SIMPLE
+#endif
+#endif
+#endif
 
-#include "ui.h"
+#if defined(LV_LVGL_H_INCLUDE_SIMPLE)
+#include "lvgl.h"
+#else
+#include "lvgl/lvgl.h"
+#endif
+
 
 #ifndef UI_FONT_GOTHAMNARROWBOOK16
 #define UI_FONT_GOTHAMNARROWBOOK16 1
