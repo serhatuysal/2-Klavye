@@ -71,7 +71,7 @@ BackGround  backGroundOlustur() {
     lv_obj_set_x(lbl_mesaj, 27);
     lv_obj_set_y(lbl_mesaj, 12);
     lv_label_set_recolor(lbl_mesaj, true);
-    lv_obj_set_style_text_font(lbl_mesaj, &ui_font_GothamNarrowSmall, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(lbl_mesaj, &ui_font_GothamNarrowBook16, LV_PART_MAIN | LV_STATE_DEFAULT);
     //lv_obj_set_style_align(lbl_mesaj, LV_ALIGN_BOTTOM_MID, 0);
 
 

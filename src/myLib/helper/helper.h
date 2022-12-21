@@ -45,8 +45,8 @@ extern "C" {
         UP_TO_DOWN = 3
 
     } position;
-  LV_FONT_DECLARE(ui_font_GothamNarrow);
-  LV_FONT_DECLARE(ui_font_GothamNarrowSmall);
+
+  LV_FONT_DECLARE(ui_font_GothamNarrowBook16);
 
   Button btn_menu;
   Button btn_start;
