@@ -81,10 +81,10 @@ Button  btnOlustur(lv_obj_t* parent, lv_coord_t  x, lv_coord_t y, const char* la
     lv_obj_t* btn_label = lv_label_create(main);
     
     lv_label_set_recolor(btn_label, true);
-    char  stepString[50];
-    sprintf(stepString, "#FFFFFF %s", label);
-    lv_label_set_text(btn_label, stepString);
+    lv_label_set_text(btn_label, label);
+    setColor(btn_label, lv_color_hex(0xFFFFFF));
     lv_obj_set_style_align(btn_label, LV_ALIGN_BOTTOM_MID, 0);
+    lv_obj_set_style_text_font(btn_label, &ui_font_GothamNarrowBook16, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_add_event_cb(ui_BTN_Power, event_cb, LV_EVENT_ALL, &main);
 
     tboru.btn = ui_BTN_Power;

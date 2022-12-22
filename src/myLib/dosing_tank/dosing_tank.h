@@ -1,7 +1,7 @@
 ﻿
 #include <stdio.h>
 
-#ifdef TESTING
+#ifdef _DEBUG
 #include "../helper/helper.h"
 #else
 #include "mylib/helper/helper.h"
@@ -20,9 +20,10 @@ extern "C" {
     {
 
         lv_obj_t* tank;
-
-        /*void (*on)(Motor* motor);
-        void (*off)(Motor* motor);
+        lv_obj_t* bar;
+        int16_t barValue;
+        void (*setBarPercent)(DosingTank* self, uint16_t percent);
+        /*void (*off)(Motor* motor);
         void (*error)(Motor* motor);*/
     };
 

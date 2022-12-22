@@ -1,7 +1,7 @@
 ﻿
 #include <stdio.h>
 
-#ifdef TESTING
+#ifdef _DEBUG
 #include "../helper/helper.h"
 #else
 #include "mylib/helper/helper.h"
@@ -21,6 +21,7 @@ extern "C" {
 
         lv_obj_t* background;
         lv_obj_t* lbl_mesaj;
+        lv_obj_t* lbl_tarih_saat;
         lv_obj_t* img_info;
         lv_obj_t* img_error;
 

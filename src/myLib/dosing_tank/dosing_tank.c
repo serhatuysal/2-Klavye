@@ -1,5 +1,33 @@
 ﻿#include "dosing_tank.h"
 
+
+void setBarPercent(DosingTank*self, uint16_t percent) {
+
+    int16_t barvalue = (percent * 42) / 100;
+   
+    //lv_obj_set_size(self->bar, 8, barvalue);
+
+
+
+   const lv_anim_t PropertyAnimation_0;
+    lv_anim_init(&PropertyAnimation_0);
+    lv_anim_set_time(&PropertyAnimation_0, 1000);
+    lv_anim_set_user_data(&PropertyAnimation_0, self->bar);
+    lv_anim_set_custom_exec_cb(&PropertyAnimation_0, _ui_anim_callback_set_height);
+    lv_anim_set_values(&PropertyAnimation_0, self->barValue, barvalue);
+    lv_anim_set_path_cb(&PropertyAnimation_0, lv_anim_path_bounce);
+    lv_anim_set_delay(&PropertyAnimation_0, 0 + 0);
+    lv_anim_set_playback_time(&PropertyAnimation_0, 0);
+    lv_anim_set_playback_delay(&PropertyAnimation_0, 0);
+    lv_anim_set_repeat_count(&PropertyAnimation_0, 0);
+    lv_anim_set_repeat_delay(&PropertyAnimation_0, 0);
+    lv_anim_set_early_apply(&PropertyAnimation_0, false);
+    
+    lv_anim_start(&PropertyAnimation_0);
+    self->barValue = barvalue;
+
+}
+
 DosingTank  dosingTankOlustur(lv_obj_t* parent, lv_coord_t  x, lv_coord_t y) {
 
     DosingTank tboru;
@@ -42,21 +70,36 @@ DosingTank  dosingTankOlustur(lv_obj_t* parent, lv_coord_t  x, lv_coord_t y) {
     lv_obj_set_style_border_width(img1, 0, 0);
 
     lv_obj_clear_flag(img1, LV_OBJ_FLAG_SCROLLABLE);
-    //lv_img_set_zoom(img1, (256*width)/64);
 
 
 
-  /*  lv_obj_t* tank_image = lv_img_create(main);
-    lv_img_set_src(tank_image, &tank_28;
-    lv_obj_set_width(tank_image, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(tank_image, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(tank_image, -186);
-    lv_obj_set_y(tank_image, -8);
-    lv_obj_set_align(tank_image, LV_ALIGN_CENTER);
-    lv_obj_add_flag(tank_image, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-    lv_obj_clear_flag(tank_image, LV_OBJ_FLAG_SCROLLABLE);*/
+
+
+    lv_obj_t* bar = lv_obj_create(img1);
+    lv_obj_set_style_radius(bar, 0, 0);
+    lv_obj_set_style_pad_all(bar, 0, 0);
+    lv_obj_set_style_pad_gap(bar, 0, 0);
+    lv_obj_set_style_border_width(bar, 0, 0);
+
+
+    //lv_obj_set_style_bg_opa(bar, LV_OPA_TRANSP, 0);
+    lv_obj_set_style_outline_opa(bar, LV_OPA_TRANSP, 0);
+    lv_obj_set_style_border_opa(bar, LV_OPA_TRANSP, 0);
+    lv_obj_set_style_bg_color(bar, lv_color_make(100, 100, 0), 0);
+    lv_obj_set_style_x(bar, 6, 0);
+    lv_obj_set_style_y(bar, 0, 0);
+    lv_obj_set_size(bar, 8, 0);
+    lv_obj_set_style_transform_pivot_x(bar, 5, 0);
+    lv_obj_set_style_transform_pivot_y(bar, 24, 0);
+    lv_obj_set_style_transform_angle(bar, -1800, 0);
+    
+    lv_obj_clear_flag(bar, LV_OBJ_FLAG_SCROLLABLE);
+
 
     tboru.tank = img1;
+    tboru.bar = bar;
+    tboru.barValue = 0;
+    tboru.setBarPercent = setBarPercent;
     /* motor.off = off;
      motor.on = on;
      motor.error = error;*/

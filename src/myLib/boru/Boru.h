@@ -1,5 +1,5 @@
 ﻿#include <stdio.h>
-#ifdef TESTING
+#ifdef _DEBUG
 #include "../helper/helper.h"
 #else
 #include "mylib/helper/helper.h"

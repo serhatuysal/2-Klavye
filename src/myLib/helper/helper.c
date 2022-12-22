@@ -1,22 +1,35 @@
 ﻿
+#ifdef _DEBUG
+#include "../../../../../../Users/serha/OneDrive/Desktop/2-Klavye/src/mylib/helper/helper.h"
+#else
 #include "helper.h"
+#endif // TESTING
+
 
 
 void infoMessageShow(const char* mesaj) {
     setVisibilty(background.img_info, true);
     setVisibilty(background.img_error, false);
-    char  stepString[1000];
-    sprintf(stepString, "#FFFFFF %s", mesaj);
-    lv_label_set_text(background.lbl_mesaj, stepString);
+    setText2(background.lbl_mesaj, mesaj, lv_color_hex(0xffffff));
 
 }
 void errorMessageShow(const char* mesaj) {
 
     setVisibilty(background.img_info, false);
     setVisibilty(background.img_error, true);
-    char  stepString[1000];
-    sprintf(stepString, "#DD3333 %s", mesaj);
-    lv_label_set_text(background.lbl_mesaj, stepString);
+  
+    setText2(background.lbl_mesaj, mesaj, lv_color_hex(0xff0000));
+}
+
+void setText(lv_obj_t* lbl, const char* text) {
+    lv_label_set_text(lbl, text);
+}
+void setText2(lv_obj_t* lbl, const char* text, lv_color_t color) {
+    lv_label_set_text(lbl, text);
+    lv_obj_set_style_text_color(lbl, color, 0);
+}
+void setColor(lv_obj_t* lbl, lv_color_t color) {
+    lv_obj_set_style_text_color(lbl, color, 0);
 }
 
 void setVisibilty(lv_obj_t* target, bool value) {
@@ -53,7 +66,7 @@ lv_obj_t* scadaMainCreate() {
     lv_obj_set_style_border_opa(scada_Main, LV_OPA_TRANSP, 0);
     //lv_obj_set_style_bg_color(main, lv_color_make(100,100,0),0);
     lv_obj_set_style_x(scada_Main, 8, 0);
-    lv_obj_set_style_y(scada_Main, 40, 0);
+    lv_obj_set_style_y(scada_Main, 42, 0);
     lv_obj_set_style_width(scada_Main, 465, 0);
     lv_obj_set_style_height(scada_Main, 200, 0);
     lv_obj_clear_flag(scada_Main, LV_OBJ_FLAG_SCROLLABLE);
@@ -80,7 +93,7 @@ lv_obj_t* btnMainCreate() {
     return btn_Main;
 }
 
-#ifdef TESTING
+#ifdef _DEBUG
 void _ui_flag_modify(lv_obj_t* target, int32_t flag, int value)
 {
     if (value == _UI_MODIFY_FLAG_TOGGLE) {
@@ -104,6 +117,16 @@ void _ui_anim_callback_set_x(lv_anim_t* a, int32_t v)
 {
     lv_obj_set_x((lv_obj_t*)a->user_data, v);
 }
+void _ui_anim_callback_set_height(lv_anim_t* a, int32_t v)
+{
+    lv_obj_set_height((lv_obj_t*)a->user_data, v);
+}
+
+int32_t _ui_anim_callback_get_height(lv_anim_t* a)
+{
+    return lv_obj_get_height((lv_obj_t*)a->user_data);
+}
+
 
 
 #endif // TESTING

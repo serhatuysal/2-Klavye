@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "86847bc0-1cb3-4043-b7c1-577fe54884b2": {
+      "ProjectGuid": "86847bc0-1cb3-4043-b7c1-577fe54884b2",
+      "DisplayName": "LVGL.Portable",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

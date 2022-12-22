@@ -1,11 +1,11 @@
 ﻿
 #include <stdio.h>
+
+#ifdef _DEBUG
 #include "../helper/helper.h"
-//#ifdef TESTING
-////#include "../helper/helper.h"
-//#else
-////#include "mylib/helper/helper.h"
-//#endif // TESTING
+#else
+#include "mylib/helper/helper.h"
+#endif // TESTING
 
 #ifndef BUTTON_H
 #define BUTTON_H

@@ -5,15 +5,32 @@
 #include <stdio.h>
 
 
-#ifdef TESTING
-#include "../../lvgl/lvgl.h"
 
+
+#ifdef _DEBUG
+#include "../../lvgl/lvgl.h"
+#include "../../src/mylib/button/button.h"
+#include "../../src/mylib/background/background.h"
+#include "../../src/mylib/filtre/filtre.h"
+#include "../../src/mylib/dirsek_10/dirsek_10.h"
+#include "../../src/mylib/TBoru/TBoru.h"
+#include "../../src/mylib/valf/Valf.h"
+#include "../../src/mylib/cip_tank/cip_tank.h"
+#include "../../src/mylib/dosing_tank/dosing_tank.h"
+#include "../../src/mylib/hpp_motor/hpp_motor.h"
+#include "../../src/mylib/kartus/kartus.h"
+#include "../../src/mylib/membrane/membrane.h"
+#include "../../src/mylib/psl_psh/psl_psh.h"
+#include "../../src/mylib//dosing_pump/dosing_pump.h"
+#include "../../src/mylib/temiz_su_tanki/temiz_su_tanki.h"
+#include "../../src/mylib/dirsek_6/dirsek_6.h"
+#include "../../src/mylib/boru/Boru.h"
+#include "../../src/mylib/dirsek_4/dirsek_4.h"
+#include "../../src/mylib/label/label.h"
 #else
 #include "lvgl.h"
 #include "ui_helpers.h"
-#endif // TESTING
-
-#include "../button/button.h"
+#include "mylib/button/button.h"
 #include "../background/background.h"
 #include "../filtre/filtre.h"
 #include "../dirsek_10/dirsek_10.h"
@@ -30,6 +47,10 @@
 #include "../dirsek_6/dirsek_6.h"
 #include "../boru/Boru.h"
 #include "../dirsek_4/dirsek_4.h"
+#include "../label/label.h"
+#endif // TESTING
+
+
 
 
 #ifdef __cplusplus
@@ -45,8 +66,9 @@ extern "C" {
         UP_TO_DOWN = 3
 
     } position;
-
-  LV_FONT_DECLARE(ui_font_GothamNarrowBook16);
+    LV_FONT_DECLARE(ui_font_GothamNarrowBook10);
+    LV_FONT_DECLARE(ui_font_GothamNarrowBook14);
+    LV_FONT_DECLARE(ui_font_GothamNarrowBook16);
 
   Button btn_menu;
   Button btn_start;
@@ -64,7 +86,7 @@ extern "C" {
   PslPsh psl;
   Valf ev1;
   Filtre filtre;
-
+    lv_obj_t* win;
 
   BackGround background;
 
@@ -73,18 +95,21 @@ extern "C" {
     void setChecked(lv_obj_t* target, bool value);
     void infoMessageShow(const char* mesaj);
     void errorMessageShow(const char* mesaj);
+    void setText(lv_obj_t* lbl, const char* text);
+    void setText2(lv_obj_t* lbl, const char* text, lv_color_t color);
+    void setColor(lv_obj_t* lbl, lv_color_t color);
 
 
-
+    lv_obj_t* scadaMainCreate();
+    lv_obj_t* btnMainCreate();
+    void ui_init();
+    void win_close(lv_event_t * e);
     void ui_event_BTN_Menu(lv_event_t* e);
     void ui_event_BTN_Stop(lv_event_t* e);
     void ui_event_BTN_Start(lv_event_t* e);
     void ui_event_BTN_CipStart(lv_event_t* e);
-    lv_obj_t* scadaMainCreate();
-    lv_obj_t* btnMainCreate();
 
-
-#ifdef TESTING
+#ifdef _DEBUG
 #define _UI_MODIFY_STATE_ADD 0
 #define _UI_MODIFY_STATE_REMOVE 1
 #define _UI_MODIFY_STATE_TOGGLE 2
@@ -95,7 +120,8 @@ extern "C" {
     void _ui_flag_modify(lv_obj_t* target, int32_t flag, int value);
     void _ui_state_modify(lv_obj_t* target, int32_t state, int value);
     void _ui_anim_callback_set_x(lv_anim_t* a, int32_t v);
-
+    void _ui_anim_callback_set_height(lv_anim_t* a, int32_t v);
+    int32_t _ui_anim_callback_get_height(lv_anim_t* a);
 #endif // TESTING
 
 

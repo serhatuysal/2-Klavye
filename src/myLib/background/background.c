@@ -35,7 +35,7 @@ BackGround  backGroundOlustur() {
     lv_obj_set_style_border_opa(mesajBox, LV_OPA_TRANSP, 0);
     lv_obj_set_style_bg_color(mesajBox, lv_color_hex(0x21282E), 0);
     lv_obj_set_style_radius(mesajBox, 10, 0);
-    lv_obj_set_size(mesajBox, 360, 30);
+    lv_obj_set_size(mesajBox, 360, 35);
     lv_obj_set_x(mesajBox, 5);
     lv_obj_set_y(mesajBox, 5);
     lv_obj_clear_flag(main, LV_OBJ_FLAG_SCROLLABLE);
@@ -49,7 +49,7 @@ BackGround  backGroundOlustur() {
     lv_obj_set_style_pad_all(img_info, 0, 0);
     lv_obj_set_style_border_width(img_info, 0, 0);
     lv_obj_set_x(img_info, 10);
-    lv_obj_set_y(img_info, 12);
+    lv_obj_set_y(img_info, 14);
     lv_obj_clear_flag(img_info, LV_OBJ_FLAG_SCROLLABLE);
     setVisibilty(img_info, false);
 
@@ -62,19 +62,19 @@ BackGround  backGroundOlustur() {
     lv_obj_set_style_pad_all(img_error, 0, 0);
     lv_obj_set_style_border_width(img_error, 0, 0);
     lv_obj_set_x(img_error, 10);
-    lv_obj_set_y(img_error, 12);
+    lv_obj_set_y(img_error, 14);
     lv_obj_clear_flag(img_error, LV_OBJ_FLAG_SCROLLABLE);
     setVisibilty(img_error, false);
 
 
-    lv_obj_t* lbl_mesaj = lv_label_create(main);
+  /*  lv_obj_t* lbl_mesaj = lv_label_create(main);
     lv_obj_set_x(lbl_mesaj, 27);
     lv_obj_set_y(lbl_mesaj, 12);
     lv_label_set_recolor(lbl_mesaj, true);
-    lv_obj_set_style_text_font(lbl_mesaj, &ui_font_GothamNarrowBook16, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(lbl_mesaj, &ui_font_GothamNarrowBook16, LV_PART_MAIN | LV_STATE_DEFAULT);*/
     //lv_obj_set_style_align(lbl_mesaj, LV_ALIGN_BOTTOM_MID, 0);
 
-
+    lv_obj_t* lbl_mesaj = lbl_Create(main, 27, 14, "", &ui_font_GothamNarrowBook16, lv_color_hex(0xffffff));
 
 
     lv_obj_t* tarihSaatBox = lv_obj_create(main);
@@ -84,10 +84,14 @@ BackGround  backGroundOlustur() {
     lv_obj_set_style_border_opa(tarihSaatBox, LV_OPA_TRANSP, 0);
     lv_obj_set_style_bg_color(tarihSaatBox, lv_color_hex(0x21282E), 0);
     lv_obj_set_style_radius(tarihSaatBox, 10, 0);
-    lv_obj_set_size(tarihSaatBox, 105, 30);
+    lv_obj_set_size(tarihSaatBox, 105, 35);
     lv_obj_set_x(tarihSaatBox, 370);
     lv_obj_set_y(tarihSaatBox, 5);
     lv_obj_clear_flag(main, LV_OBJ_FLAG_SCROLLABLE);
+
+
+    lv_obj_t* lbl_tarih_saat = lbl_Create(main, 390, 8, "21.12.2022\n23:11:00", &ui_font_GothamNarrowBook14, lv_color_hex(0xffffff));
+    //lv_obj_t* lbl_saat = lbl_Create(main, 400, 18, "23:11:00", &ui_font_GothamNarrowBook10, lv_color_hex(0xffffff));
 
 
     lv_obj_t* hr = lv_obj_create(main);
@@ -108,6 +112,7 @@ BackGround  backGroundOlustur() {
     tboru.lbl_mesaj = lbl_mesaj;
     tboru.img_info = img_info;
     tboru.img_error = img_error;
+    tboru.lbl_tarih_saat = lbl_tarih_saat;
     //tboru.infoMessageShow = infoMessageShow;
    // tboru.errorMessageShow = errorMessageShow;
     return tboru;
