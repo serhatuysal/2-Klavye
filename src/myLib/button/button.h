@@ -1,6 +1,5 @@
 ﻿
 #include <stdio.h>
-
 #ifdef _DEBUG
 #include "../helper/helper.h"
 #else
