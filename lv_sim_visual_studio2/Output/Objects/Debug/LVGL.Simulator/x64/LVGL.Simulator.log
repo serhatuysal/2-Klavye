@@ -1,0 +1,25 @@
+﻿  app_ui.c
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(20,11): warning C4101: 'tboru_1': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(43,10): warning C4101: 'boru8': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(34,14): warning C4101: 'membrane': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(18,15): warning C4101: 'dirsek10_2': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(57,10): warning C4101: 'boru12': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(48,13): warning C4101: 'dirsek4_3': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(39,13): warning C4101: 'dirsek6_1': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(24,12): warning C4101: 'kartus': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(23,10): warning C4101: 'boru3': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(22,11): warning C4101: 'tboru_2': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(37,10): warning C4101: 'boru6_1': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(36,11): warning C4101: 'tboru_3': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(52,10): warning C4101: 'boru13': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(31,10): warning C4101: 'boru5': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(17,10): warning C4101: 'boru1': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(26,10): warning C4101: 'boru4': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(60,10): warning C4101: 'boru_dosing': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(47,10): warning C4101: 'ev4_boru': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(21,10): warning C4101: 'boru2': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(54,14): warning C4101: 'dirsek10_3': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(40,10): warning C4101: 'boru7': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(29,14): warning C4101: 'hpp': unreferenced local variable
+C:\Users\serha\OneDrive\Desktop\2-Klavye\src\app_ui.c(35,10): warning C4101: 'boru6': unreferenced local variable
+  LVGL.Simulator.vcxproj -> C:\Users\serha\OneDrive\Desktop\2-Klavye\lv_sim_visual_studio\Output\Binaries\Debug\x64\LVGL.Simulator.exe

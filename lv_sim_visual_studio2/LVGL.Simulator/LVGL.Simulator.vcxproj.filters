@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="LVGL.Portable.vcxitems.filters" />
+  <Import Project="LVGL.Drivers.vcxitems.filters" />
+  <ItemGroup>
+    <ClInclude Include="lv_conf.h" />
+    <ClInclude Include="lv_drv_conf.h" />
+    <ClInclude Include="..\..\lib\lvgl\lvgl.h" />
+    <ClInclude Include="..\..\src\mylib\background\background.h" />
+    <ClInclude Include="..\..\src\mylib\boru\Boru.h" />
+    <ClInclude Include="..\..\src\mylib\button\button.h" />
+    <ClInclude Include="..\..\src\mylib\cip_tank\cip_tank.h" />
+    <ClInclude Include="..\..\src\mylib\dirsek_10\dirsek_10.h" />
+    <ClInclude Include="..\..\src\mylib\dirsek_4\dirsek_4.h" />
+    <ClInclude Include="..\..\src\mylib\dirsek_6\dirsek_6.h" />
+    <ClInclude Include="..\..\src\mylib\dosing_pump\dosing_pump.h" />
+    <ClInclude Include="..\..\src\mylib\dosing_tank\dosing_tank.h" />
+    <ClInclude Include="..\..\src\mylib\filtre\filtre.h" />
+    <ClInclude Include="..\..\src\mylib\helper\helper.h" />
+    <ClInclude Include="..\..\src\mylib\hpp_motor\hpp_motor.h" />
+    <ClInclude Include="..\..\src\mylib\kartus\kartus.h" />
+    <ClInclude Include="..\..\src\mylib\label\label.h" />
+    <ClInclude Include="..\..\src\mylib\membrane\membrane.h" />
+    <ClInclude Include="..\..\src\mylib\psl_psh\psl_psh.h" />
+    <ClInclude Include="..\..\src\mylib\TBoru\TBoru.h" />
+    <ClInclude Include="..\..\src\mylib\temiz_su_tanki\temiz_su_tanki.h" />
+    <ClInclude Include="..\..\src\mylib\valf\Valf.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="LVGL.Simulator.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mile.Project.Properties.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LVGL.Simulator.cpp" />
+    <ClCompile Include="..\..\src\mylib\background\background.c" />
+    <ClCompile Include="..\..\src\mylib\assets\10_Dirsek.c" />
+    <ClCompile Include="..\..\src\mylib\assets\10_T_Boru.c" />
+    <ClCompile Include="..\..\src\mylib\assets\10_Valf_error.c" />
+    <ClCompile Include="..\..\src\mylib\assets\10_Valf_run.c" />
+    <ClCompile Include="..\..\src\mylib\assets\10_Valf_stop.c" />
+    <ClCompile Include="..\..\src\mylib\assets\4_Dirsek.c" />
+    <ClCompile Include="..\..\src\mylib\assets\4_Valf_error.c" />
+    <ClCompile Include="..\..\src\mylib\assets\4_Valf_run.c" />
+    <ClCompile Include="..\..\src\mylib\assets\4_Valf_stop.c" />
+    <ClCompile Include="..\..\src\mylib\assets\6_Dirsek.c" />
+    <ClCompile Include="..\..\src\mylib\assets\6_T_Boru.c" />
+    <ClCompile Include="..\..\src\mylib\assets\background_img.c" />
+    <ClCompile Include="..\..\src\mylib\assets\boru_10.c" />
+    <ClCompile Include="..\..\src\mylib\assets\boru_4.c" />
+    <ClCompile Include="..\..\src\mylib\assets\boru_6.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_cipstart_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_cipstart_pressed.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_menu_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_menu_pressed.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_start_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_start_pressed.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_stop_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\button_stop_pressed.c" />
+    <ClCompile Include="..\..\src\mylib\assets\cip_tank_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\dosing_pump_error.c" />
+    <ClCompile Include="..\..\src\mylib\assets\dosing_pump_run.c" />
+    <ClCompile Include="..\..\src\mylib\assets\dosing_pump_stop.c" />
+    <ClCompile Include="..\..\src\mylib\assets\dosing_tank_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\error.c" />
+    <ClCompile Include="..\..\src\mylib\assets\filtre_run.c" />
+    <ClCompile Include="..\..\src\mylib\assets\filtre_stop.c" />
+    <ClCompile Include="..\..\src\mylib\assets\hpp_motor_run.c" />
+    <ClCompile Include="..\..\src\mylib\assets\hpp_motor_stop.c" />
+    <ClCompile Include="..\..\src\mylib\assets\info.c" />
+    <ClCompile Include="..\..\src\mylib\assets\kartus_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\membrane_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\PSL_PSH_error.c" />
+    <ClCompile Include="..\..\src\mylib\assets\PSL_PSH_normal.c" />
+    <ClCompile Include="..\..\src\mylib\assets\temizsutanki2.c" />
+    <ClCompile Include="..\..\src\mylib\assets\T_Boru_cip.c" />
+    <ClCompile Include="..\..\src\mylib\assets\T_Boru_dosing.c" />
+    <ClCompile Include="..\..\src\mylib\assets\ui_font_GothamNarrowBook10.c" />
+    <ClCompile Include="..\..\src\mylib\assets\ui_font_GothamNarrowBook14.c" />
+    <ClCompile Include="..\..\src\mylib\assets\ui_font_GothamNarrowBook16.c" />
+    <ClCompile Include="..\..\src\mylib\assets\water_1.c" />
+    <ClCompile Include="..\..\src\mylib\assets\water_2.c" />
+    <ClCompile Include="..\..\src\mylib\boru\Boru.c" />
+    <ClCompile Include="..\..\src\mylib\button\button.c" />
+    <ClCompile Include="..\..\src\mylib\cip_tank\cip_tank.c" />
+    <ClCompile Include="..\..\src\mylib\dirsek_10\dirsek_10.c" />
+    <ClCompile Include="..\..\src\mylib\dirsek_4\dirsek_4.c" />
+    <ClCompile Include="..\..\src\mylib\dirsek_6\dirsek_6.c" />
+    <ClCompile Include="..\..\src\mylib\dosing_pump\dosing_pump.c" />
+    <ClCompile Include="..\..\src\mylib\dosing_tank\dosing_tank.c" />
+    <ClCompile Include="..\..\src\mylib\filtre\filtre.c" />
+    <ClCompile Include="..\..\src\mylib\helper\helper.c" />
+    <ClCompile Include="..\..\src\mylib\hpp_motor\hpp_motor.c" />
+    <ClCompile Include="..\..\src\mylib\kartus\kartus.c" />
+    <ClCompile Include="..\..\src\mylib\label\label.c" />
+    <ClCompile Include="..\..\src\mylib\membrane\membrane.c" />
+    <ClCompile Include="..\..\src\mylib\psl_psh\psl_psh.c" />
+    <ClCompile Include="..\..\src\mylib\TBoru\TBoru.c" />
+    <ClCompile Include="..\..\src\mylib\temiz_su_tanki\temiz_su_tanki.c" />
+    <ClCompile Include="..\..\src\mylib\valf\Valf.c" />
+    <ClCompile Include="..\..\src\app_ui.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LVGL.Simulator.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="LVGL.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="freetype.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="myLib">
+      <UniqueIdentifier>{bac8420b-d9db-4047-911d-aba73c8d6bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="myLib\motor">
+      <UniqueIdentifier>{feb64f10-f055-4c09-9016-ee1dd77d0423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="myLib\giristank">
+      <UniqueIdentifier>{863f586f-a915-432a-a298-16428554fde8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

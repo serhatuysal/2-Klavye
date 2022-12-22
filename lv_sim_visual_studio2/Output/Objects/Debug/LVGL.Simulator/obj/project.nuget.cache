@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "HP5L413iqsVMqr06j9wqL8C7dYMVMORsEXRZK3E5lA9pkOBq6JZ4zcnlbbHuWTuGbowQFOFUuX3jhzX7uIJNIg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\serha\\OneDrive\\Desktop\\2-Klavye\\lv_sim_visual_studio\\LVGL.Simulator\\LVGL.Simulator.vcxproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\serha\\.nuget\\packages\\vc-ltl\\5.0.5\\vc-ltl.5.0.5.nupkg.sha512",
+    "C:\\Users\\serha\\.nuget\\packages\\yy.nuget.import.helper\\1.0.0.4\\yy.nuget.import.helper.1.0.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
