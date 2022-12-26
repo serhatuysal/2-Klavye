@@ -4,7 +4,7 @@
 #else
 #include "helper.h"
 #endif // TESTING
-
+#include <ArduinoJson.h>
 
 
 void infoMessageShow(const char* mesaj) {
@@ -51,7 +51,9 @@ void setChecked(lv_obj_t* target, bool value) {
         _ui_state_modify(target, LV_STATE_CHECKED, _UI_MODIFY_FLAG_REMOVE);
     }
 }
+void dfeneme(){
 
+}
 
 lv_obj_t* scadaMainCreate() {
     lv_obj_t* scada_Main = lv_obj_create(background.background);
@@ -116,6 +118,10 @@ void _ui_state_modify(lv_obj_t* target, int32_t state, int value)
 void _ui_anim_callback_set_x(lv_anim_t* a, int32_t v)
 {
     lv_obj_set_x((lv_obj_t*)a->user_data, v);
+}
+void _ui_anim_callback_set_y(lv_anim_t* a, int32_t v)
+{
+    lv_obj_set_y((lv_obj_t*)a->user_data, v);
 }
 void _ui_anim_callback_set_height(lv_anim_t* a, int32_t v)
 {

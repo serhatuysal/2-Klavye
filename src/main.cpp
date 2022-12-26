@@ -139,7 +139,10 @@ static lv_fs_drv_t fs_drv;
 
   lv_fs_drv_register(&fs_drv);
 
+    char json[] = "{\"sensor\":\"gps\",\"time\":1351824120,\"data\":[48.756080,2.302038]}";
 
+DynamicJsonDocument doc(1024);
+deserializeJson(doc, json);
 
     ui_init();
 

@@ -3,7 +3,7 @@
 #define HELPER_H
 
 #include <stdio.h>
-
+#include <ArduinoJson.h>
 
 
 
@@ -120,6 +120,7 @@ extern "C" {
     void _ui_flag_modify(lv_obj_t* target, int32_t flag, int value);
     void _ui_state_modify(lv_obj_t* target, int32_t state, int value);
     void _ui_anim_callback_set_x(lv_anim_t* a, int32_t v);
+    void _ui_anim_callback_set_y(lv_anim_t* a, int32_t v);
     void _ui_anim_callback_set_height(lv_anim_t* a, int32_t v);
     int32_t _ui_anim_callback_get_height(lv_anim_t* a);
 #endif // TESTING

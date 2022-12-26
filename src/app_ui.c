@@ -40,7 +40,7 @@ void ui_init()
     Boru boru7 = boru_Create(scada_Main, 443, 100, 37, DOWN_TO_UP, b6);
     temiz_su_tanki = temizSuTanki_Create(scada_Main, 416, 100);
 
-    Boru boru8 = boru_Create(scada_Main, 377, 68, 80, UP_TO_DOWN, b4);
+    Boru boru8 = boru_Create(scada_Main, 377, 68, 68, UP_TO_DOWN, b4);
      ev3 = valf_Create(scada_Main, 389, 80, DOWN_TO_UP, v4);
      cipTank = cipTank_Create(scada_Main, 357, 130);
 
@@ -138,6 +138,8 @@ void ui_event_BTN_Stop(lv_event_t* e)
         setChecked(btn_menu.btn, false);
         errorMessageShow("Bu bir error mesajı");
         dosing_tank.setBarPercent(&dosing_tank, 50);
+        temiz_su_tanki.setBarPercent(&temiz_su_tanki, 100);
+        cipTank.setBarPercent(&cipTank, 100);
     }
 }
 void ui_event_BTN_Start(lv_event_t* e)
@@ -151,6 +153,8 @@ void ui_event_BTN_Start(lv_event_t* e)
         //background.infoMessageShow(&background, "Bu bir info mesajı");
         infoMessageShow("Bu bir info mesajı");
         dosing_tank.setBarPercent(&dosing_tank, 100);
+        temiz_su_tanki.setBarPercent(&temiz_su_tanki, 50);
+        cipTank.setBarPercent(&cipTank, 50);
     }
 }
 void ui_event_BTN_CipStart(lv_event_t* e)
@@ -158,9 +162,11 @@ void ui_event_BTN_CipStart(lv_event_t* e)
 
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t* target = lv_event_get_target(e);
+    
     if (event_code == LV_EVENT_CLICKED) {
-
-
+        temiz_su_tanki.setBarPercent(&temiz_su_tanki, 0);
+        cipTank.setBarPercent(&cipTank, 0);
+        
 
     }
 }

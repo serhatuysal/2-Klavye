@@ -20,7 +20,10 @@ extern "C" {
     {
 
         lv_obj_t* tank;
-
+        int16_t wavePercent;
+        lv_obj_t* wave1;
+        //lv_obj_t* wave2;
+        void (*setBarPercent)(CipTank* self, uint16_t percent);
         /*void (*on)(Motor* motor);
         void (*off)(Motor* motor);
         void (*error)(Motor* motor);*/

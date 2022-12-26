@@ -10,7 +10,9 @@
         "kartus.h": "c",
         "lv_conf_internal.h": "c",
         "button.h": "c",
-        "ui_helpers.h": "c"
+        "ui_helpers.h": "c",
+        "stdio.h": "c",
+        "arduinojson.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
