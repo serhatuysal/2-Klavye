@@ -12,7 +12,15 @@
         "button.h": "c",
         "ui_helpers.h": "c",
         "stdio.h": "c",
-        "arduinojson.h": "c"
+        "arduinojson.h": "c",
+        "filtre.h": "c",
+        "typeinfo": "cpp",
+        "temiz_su_tanki.hpp": "c",
+        "helper.hpp": "c",
+        "background.hpp": "c",
+        "*.tcc": "c",
+        "dirsek_10.hpp": "c",
+        "cip_tank.hpp": "c"
     },
-    "C_Cpp.errorSquiggles": "enabled"
+    "C_Cpp.errorSquiggles": "disabled"
 }

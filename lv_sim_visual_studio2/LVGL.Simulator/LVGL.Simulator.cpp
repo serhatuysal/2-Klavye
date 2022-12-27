@@ -22,7 +22,7 @@
 #endif
 
 #include <stdio.h>
-#include "../../src/mylib/helper/helper.h"
+#include "../../src/mylib/helper.hpp"
 
 int main()
 {
@@ -63,6 +63,7 @@ int main()
     ////lv_fs_close(&f);
 
     ui_init();
+   
 
 
     while (!lv_win32_quit_signal)
