@@ -106,9 +106,9 @@ extern "C" {
 	Membrane membrane;
 
 	void ui_init() {
-		lv_obj_t* scada_Main = scadaMainCreate();
-		background.init();
 	
+		background.init();
+		lv_obj_t* scada_Main = scadaMainCreate();
 		filtre.init(scada_Main, 0, 72);
 
 		boru1.init(scada_Main, 20, 72, 35, DOWN_TO_UP, b10);
