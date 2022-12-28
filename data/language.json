@@ -1,0 +1,14 @@
+﻿{
+  "tr": {
+    "btnMenu": "Menü",
+    "btnStart": "Başla",
+    "btnStop": "Durdur",
+    "btnCipStart": "Cip Başla"
+  },
+  "en": {
+    "btnMenu": "Menu",
+    "btnStart": "Start",
+    "btnStop": "Stop",
+    "btnCipStart": "Cip Start"
+  }
+}

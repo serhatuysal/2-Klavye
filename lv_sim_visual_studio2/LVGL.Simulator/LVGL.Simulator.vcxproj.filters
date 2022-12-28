@@ -161,6 +161,7 @@
     <ClInclude Include="..\..\src\mylib\psl_psh.hpp" />
     <ClInclude Include="..\..\src\mylib\TBoru.hpp" />
     <ClInclude Include="..\..\src\mylib\Valf.hpp" />
+    <ClInclude Include="..\..\src\myLib\language.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="LVGL.Simulator.manifest" />

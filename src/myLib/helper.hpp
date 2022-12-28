@@ -22,6 +22,8 @@
 #include "dirsek_6.hpp"
 #include "Boru.hpp"
 #include "dirsek_4.hpp"
+#include "language.hpp"
+#include "ArduinoJson.h"
 //#include "../../src/mylib/label/label.h"
 #else
 #include "lvgl.h"
@@ -42,7 +44,7 @@
 #include "mylib/dirsek_6.hpp"
 #include "mylib/Boru.hpp"
 #include "mylib/dirsek_4.hpp"
-// #include "mylib/label/label.h"
+#include "myLib/language.hpp"
 
 #endif // TESTING
 
@@ -104,9 +106,11 @@ extern "C" {
 	Dirsek6 dirsek6_1;
 	Kartus kartus;
 	Membrane membrane;
-
+	Language L;
 	void ui_init() {
 	
+		L.init("en");
+
 		background.init();
 		lv_obj_t* scada_Main = scadaMainCreate();
 		filtre.init(scada_Main, 0, 72);
@@ -160,10 +164,12 @@ extern "C" {
 
 
 		lv_obj_t* btn_Main = btnMainCreate();
-		btn_start.init(btn_Main, 190, 0, "Start", BTNSTART, ui_event_BTN_Start, false);
-		btn_stop.init(btn_Main, 260, 0, "Stop", BTNSTOP, ui_event_BTN_Stop, false);
-		btn_cipstart.init(btn_Main, 330, 0, "Cip Start", BTNCIPSTART, ui_event_BTN_CipStart, false);
-		btn_menu.init(btn_Main, 400, 0, "Menu", BTNMENU, ui_event_BTN_Menu, true);
+		btn_start.init(btn_Main, 190, 0, L.get("btnStart"), BTNSTART, ui_event_BTN_Start, false);
+		btn_stop.init(btn_Main, 260, 0, L.get("btnStop"), BTNSTOP, ui_event_BTN_Stop, false);
+		btn_cipstart.init(btn_Main, 330, 0, L.get("btnCipStart"), BTNCIPSTART, ui_event_BTN_CipStart, false);
+		btn_menu.init(btn_Main, 400, 0, L.get("btnMenu"), BTNMENU, ui_event_BTN_Menu, true);
+
+		
 	};
 
 

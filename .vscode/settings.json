@@ -20,7 +20,8 @@
         "background.hpp": "c",
         "*.tcc": "c",
         "dirsek_10.hpp": "c",
-        "cip_tank.hpp": "c"
+        "cip_tank.hpp": "c",
+        "iosfwd": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
