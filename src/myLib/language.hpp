@@ -12,21 +12,24 @@
 
 #ifndef LANGUAGE_H
 #define LANGUAGE_H
-#ifdef __cplusplus
-extern "C"
+
+enum LanguageCodeType
 {
-#endif
+    TR=0,
+    EN=1
+};
 
     class Language
     {
     public:
         StaticJsonDocument<1024> doc;
-        void init(const char *_code)
+        LanguageCodeType CodeType;
+        void init(LanguageCodeType _codeType)
         {
-            code = _code;
+            CodeType = _codeType;
 #ifdef _DEBUG
 
-            std::wstring mytext = LoadUtf8FileToString(L"C:/test/language.json");
+            std::wstring mytext = LoadUtf8FileToString(L"C:/Users/user6/Desktop/2-Klavye/data/language.json");
             deserializeJson(doc, mytext);
 #else
         File file2 = SPIFFS.open("/language.json","r");
@@ -47,12 +50,12 @@ extern "C"
         const char *get(const char *key)
         {
            
-            JsonObject data = doc[code].as<JsonObject>();
+            JsonObject data = doc[CodeType==TR ? "TR" : "EN"].as<JsonObject>();
             return data[key];
         }
 
     private:
-        const char *code;
+      
 #ifdef _DEBUG
         size_t GetSizeOfFile(const std::wstring &path)
         {
@@ -91,9 +94,7 @@ extern "C"
 #else
 #endif
     };
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
+    Language L;
+    
 
 #endif /* DIRSEK_H */

@@ -1,14 +1,24 @@
 ﻿{
-  "tr": {
+  "TR": {
     "btnMenu": "Menü",
     "btnStart": "Başla",
     "btnStop": "Durdur",
-    "btnCipStart": "Cip Başla"
+    "btnCipStart": "Cip Başla",
+    "SystemSettings":"Sistem Ayarları",
+    "languageDropDownList":"Türkçe\nİngilizce",
+    "changeLanguageQuestionMessageBox":"Dili Değiştirmek İstiyormusunuz?",
+    "yes":"Evet",
+    "no":"Hayır"
   },
-  "en": {
+  "EN": {
     "btnMenu": "Menu",
     "btnStart": "Start",
     "btnStop": "Stop",
-    "btnCipStart": "Cip Start"
+    "btnCipStart": "Cip Start",
+    "SystemSettings":"System\nSettings",
+    "languageDropDownList":"Turkish\nEnglish",
+    "changeLanguageQuestionMessageBox":"Do You Want To Change The Language?",
+    "yes":"Yes",
+    "no":"No"
   }
 }
