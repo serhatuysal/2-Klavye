@@ -29,10 +29,10 @@ enum LanguageCodeType
             CodeType = _codeType;
 #ifdef _DEBUG
 
-            std::wstring mytext = LoadUtf8FileToString(L"C:/Users/user6/Desktop/2-Klavye/data/language.json");
+            std::wstring mytext = LoadUtf8FileToString(L"C:/Users/serha/OneDrive/Desktop/2-Klavye/data/language.json");
             deserializeJson(doc, mytext);
 #else
-        File file2 = SPIFFS.open("/language.json","r");
+        File file2 = SPIFFS.open("dil/language.json","r");
         if (!file2)
         {
             Serial.println("Failed to open file for reading");
