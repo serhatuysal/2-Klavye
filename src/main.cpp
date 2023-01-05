@@ -26,11 +26,10 @@ void handleNotFound(AsyncWebServerRequest *request);
 
 void wifi_baglan(const char *ssid, const char *password);
 
-
 struct Config
 {
-  const char *ssid = "ISUBU_WiFi";
-  const char *password = "DenemE123!!";
+  const char *ssid = "ESP32-Access-Point";
+  const char *password = "123456789";
   const char *version = "v0.0.0";
   const char *cihazAciklama = "Test calısmaları devam ediyor";
 
@@ -38,10 +37,6 @@ struct Config
   bool ipgoster;
 };
 Config config;
-
-
-
-
 
 void setup()
 {
@@ -56,10 +51,14 @@ void setup()
     return;
   }
 
-  wifi_baglan("ISUBU_WiFi", "DenemE123!!");
+  WiFi.softAP(config.ssid, config.password);
+
+  IPAddress IP = WiFi.softAPIP();
+  Serial.print("AP IP address: ");
+  Serial.println(IP);
+
   server.addHandler(new SPIFFSEditor(SPIFFS));
   server.onNotFound([](AsyncWebServerRequest *request) { // If the client requests any URI
-    
     if (!handleFileRead(request, request->url()))
     {                          // aranan sayfa var ise gönder
       handleNotFound(request); // otherwise, respond with a 404 (Not Found) error
@@ -69,10 +68,8 @@ void setup()
 
   server.serveStatic("/", SPIFFS, "/").setDefaultFile("index.html");
 
-
   server.addHandler(&events);
   server.begin();
-
 }
 
 bool handleFileRead(AsyncWebServerRequest *request, String path)
@@ -93,7 +90,7 @@ bool handleFileRead(AsyncWebServerRequest *request, String path)
 
   if (path == "/all")
   {
-   
+
     return true;
   }
 
@@ -124,25 +121,21 @@ bool handleFileRead(AsyncWebServerRequest *request, String path)
     }
   }
 
-  
   return false; // aranan link yok ise geriye false dönecek
 }
 
-
-
 void wifi_baglan(const char *ssid, const char *password)
 {
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(ssid, password);
-    if (WiFi.waitForConnectResult() != WL_CONNECTED)
-    {
-        Serial.printf("WiFi'ye Baglanamadi!\n");
-        return;
-    }
-    Serial.print("IP: ");
-    Serial.println(WiFi.localIP());
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+  if (WiFi.waitForConnectResult() != WL_CONNECTED)
+  {
+    Serial.printf("WiFi'ye Baglanamadi!\n");
+    return;
+  }
+  Serial.print("IP: ");
+  Serial.println(WiFi.localIP());
 }
-
 
 void handleNotFound(AsyncWebServerRequest *request)
 {
@@ -183,9 +176,7 @@ String formatBytes(size_t bytes)
   }
 }
 
-
 void loop()
 {
-
-  
+  delay(1);
 }
