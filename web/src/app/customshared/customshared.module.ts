@@ -8,6 +8,7 @@ import { API_BASE_URL, AppConsts } from './AppConsts';
     imports: [
         CommonModule,
         RouterModule,
+        
       
     ],
     declarations: [

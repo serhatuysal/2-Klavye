@@ -4,6 +4,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomShared } from './customshared/customshared.module';
+import { ServicesModule } from './customshared/services/services.module';
 import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
@@ -88,7 +89,8 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    CustomShared
+    CustomShared,
+    ServicesModule
   ],
   providers: [
     {
